@@ -50,21 +50,14 @@ app.post("/api/persons", (request, response) => {
         })
     }
 
-    if (persons.filter(person => person.name === body.name).length > 0) {
-        return response.status(400).json({
-            error: 'name must be unique'
-        })
-    }
-
-    const person = {
+    const person = new Person({
         name: body.name, 
         number: body.number,
-        id: generateId(),
-    }
+    })
 
-    persons = persons.concat(person)
-
-    response.json(person)
+    person.save().then(savedPerson => {
+        response.json(savedPerson)
+    })
 })
 
 app.delete("/api/persons/:id", (request, response) => {
@@ -74,7 +67,7 @@ app.delete("/api/persons/:id", (request, response) => {
     response.status(204).end()
 })
 
-const PORT = 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
