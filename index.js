@@ -22,7 +22,7 @@ app.get("/", (request, response) => {
 })
 
 app.get("/api/persons", (request, response) => {
-    Person.find({}).then (people => {
+    Person.find({}).then(people => {
         response.json(people)
     })
 })
@@ -43,13 +43,15 @@ app.get("/info", (request, response) => {
 
 app.post("/api/persons", (request, response) => {
     const body = request.body
+    console.log('trying to post new person')
 
-    if (!body.name | !body.number){
+    if (body.name === undefined | body.number === undefined){
         return response.status(400).json({
             error: 'content missing'
         })
     }
 
+    console.log('made it past if statement')
     const person = new Person({
         name: body.name, 
         number: body.number,
