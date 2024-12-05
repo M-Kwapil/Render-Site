@@ -38,7 +38,7 @@ app.get("/api/persons/:id", (request, response, next) => {
 
 app.get("/info", (request, response) => {
     let recieved = new Date().toLocaleString()
-    let people = persons.length
+    let people = Person.find({}).length
 
     response.send(`Phonebook has info for ${people} people <br/><br/> ${recieved}`)
 
@@ -66,6 +66,20 @@ app.delete("/api/persons/:id", (request, response, next) => {
     Person.findByIdAndDelete(request.params.id)
     .then(result => {
         response.status(204).end()
+    })
+    .catch(error => next(error))
+})
+
+app.put("/api/persons/:id", (request, response, next) => {
+    const body = request.body
+
+    const person = {
+        name: body.name,
+        number: body.number,
+    }
+    Person.findByIdAndUpdate(request.params.id, person, {new: true})
+    .then(result => {
+        response.json(result)
     })
     .catch(error => next(error))
 })
