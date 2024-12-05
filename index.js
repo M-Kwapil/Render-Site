@@ -38,7 +38,7 @@ app.get("/api/persons/:id", (request, response, next) => {
 
 app.get("/info", (request, response) => {
     let recieved = new Date().toLocaleString()
-    let people = Person.find({}).length
+    let people = Person.Count()
 
     response.send(`Phonebook has info for ${people} people <br/><br/> ${recieved}`)
 
