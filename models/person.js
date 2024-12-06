@@ -20,6 +20,7 @@ mongoose.connect(url)
         },
         number: {
             type: String,
+            minLength: 8,
             required: true
         },
     })
