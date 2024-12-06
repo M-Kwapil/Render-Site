@@ -57,7 +57,7 @@ app.post("/api/persons", (request, response, next) => {
      .then(savedPerson => {
         response.json(savedPerson)
      })
-     .catch(error => next(error)
+     .catch(error => next(error))
 })
 
 app.delete("/api/persons/:id", (request, response, next) => {
