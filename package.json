@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:ui": "shx rm -rf dist && cd C:\\VSCode\\FullStackOpen\\part2\\Phonebook && npm run build && shx cp -r dist C:\\VSCode\\FullStackOpen\\part3\\backend",
     "dev": "nodemon index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,10 +15,17 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.19.2",
+    "mongoose": "^8.8.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "@eslint/js": "^9.16.0",
+    "@stylistic/eslint-plugin-js": "^2.11.0",
+    "eslint": "^9.16.0",
+    "globals": "^15.13.0",
+    "nodemon": "^3.1.4",
+    "shx": "^0.3.4"
   }
 }
